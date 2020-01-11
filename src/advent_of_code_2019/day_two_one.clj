@@ -14,6 +14,12 @@
     (map edn/read-string
       (str/split program #","))))
 
+(defn restore-program-to-state-before-fire
+  [program]
+  (-> program
+      (assoc 1 12)
+      (assoc 2 2)))
+
 
 (defn execute
   [program]
@@ -39,4 +45,4 @@
           (+ 4 opcode-position))))))
 
 (comment
-  (execute (parse-program raw-program)))
+  (execute (restore-program-to-state-before-fire (parse-program raw-program))))
