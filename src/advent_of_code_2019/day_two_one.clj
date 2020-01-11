@@ -45,4 +45,8 @@
           (+ 4 opcode-position))))))
 
 (comment
-  (execute (restore-program-to-state-before-fire (parse-program raw-program))))
+  ;; What value is left at position 0 after the program halts? Answer: 4138687.
+  (->> raw-program
+       parse-program
+       restore-program-to-state-before-fire
+       execute))
